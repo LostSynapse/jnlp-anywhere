@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jnlp-anywhere
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jnlp-anywhere
+  template:
+    metadata:
+      labels:
+        app: jnlp-anywhere
+    spec:
+      containers:
+      - name: jnlp-anywhere
+        image: ghcr.io/lostsynapse/jnlp-anywhere:latest
+        env:
+        - name: JNLP_URL
+          value: "http://192.168.1.x/admin.jnlp"
+        # Uncomment to enable Xpra-level password auth
+        # - name: XPRA_PASSWORD
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: jnlp-anywhere-secret
+        #       key: password
+        # Uncomment to preseed password into HTML5 client default-settings.
+        # Read the documentation before enabling. Requires XPRA_PASSWORD.
+        # - name: XPRA_PRESEED_PASSWORD
+        #   value: "true"
+        ports:
+        - containerPort: 14500
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jnlp-anywhere
+spec:
+  selector:
+    app: jnlp-anywhere
+  ports:
+  - port: 14500
+    targetPort: 14500

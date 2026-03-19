@@ -1,0 +1,16 @@
+# Downloaded jars (fetched at runtime, never committed)
+*.jar
+*.jnlp
+
+# Local testing artifacts
+.env
+docker-compose.override.yml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
