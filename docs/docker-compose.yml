@@ -1,0 +1,12 @@
+services:
+  jnlp-anywhere:
+    image: ghcr.io/lostsynapse/jnlp-anywhere:latest
+    ports:
+      - "14500:14500"
+    environment:
+      - JNLP_URL=http://your-device/path/to/app.jnlp
+      # - XPRA_PASSWORD=changeme
+      # - XPRA_PRESEED_PASSWORD=true
+      # - XPRA_AUDIO=true
+      # - XPRA_DEBUG=1
+    restart: unless-stopped
