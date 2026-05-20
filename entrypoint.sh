@@ -18,6 +18,14 @@ elif [ "${XPRA_DEBUG}" = "1" ]; then
     XPRA_LOG_OPTS="--debug all"
 fi
 
+# Resolve libX11 path dynamically for multiarch compatibility.
+# The Dockerfile does not hardcode this; the correct path varies by architecture
+# (x86_64-linux-gnu vs aarch64-linux-gnu vs arm-linux-gnueabihf etc).
+LIBX11_PATH=$(ldconfig -p | awk '/libX11\.so\.6 \(/{print $NF; exit}')
+if [ -n "${LIBX11_PATH}" ]; then
+    export LD_PRELOAD="${LIBX11_PATH}"
+fi
+
 set -e
 
 # Validate required env var
