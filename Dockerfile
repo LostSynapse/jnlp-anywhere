@@ -27,7 +27,6 @@ RUN apt-get update && apt-get install -y \
     dbus \
     && rm -rf /var/lib/apt/lists/*
 
-ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libX11.so.6
 ENV XPRA_ZEROCOPY=0
 ENV XPRA_OPENGL=0
 ENV TERM=xterm-256color
