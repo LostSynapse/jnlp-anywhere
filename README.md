@@ -98,7 +98,7 @@ Understanding how the container behaves across different exit scenarios is impor
 
 **Multi-jar applications:** All jars declared in the JNLP resources block are downloaded and added to the classpath. Applications that dynamically load additional jars at runtime outside the JNLP declaration may not work correctly.
 
-**Signed jars and security dialogs:** Some applications present security dialogs during launch. These will appear in the Xpra session and must be accepted manually on first run.
+**Signed jars and security dialogs:** Some applications present security dialogs during launch. These will appear in the Xpra session and must be accepted manually.
 
 **Session persistence:** The container runs a single Xpra session tied to the application lifecycle. When the application exits, the container exits. This is intentional — the container is not designed as a persistent desktop.
 
